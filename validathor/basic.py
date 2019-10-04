@@ -9,7 +9,7 @@ class _RequiredPropertyValidator(PropertyValidator):
 required = _RequiredPropertyValidator()
 
 class _NullablePropertyValidator(PropertyValidator):
-    def willOverrideAnd(self):
+    def will_override_and(self):
         return True
 
     def validate(self, obj, name):

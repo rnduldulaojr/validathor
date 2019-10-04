@@ -1,7 +1,7 @@
 from abc import ABC, abstractmethod
 
 class AbstractValidator(ABC):
-    def willOverrideAnd(self):
+    def will_override_and(self):
         return False
 
     @abstractmethod
@@ -31,12 +31,12 @@ class PropertyValidator(AbstractValidator):
 
 
     def __or__(self, other):
-        if self.willOverrideAnd() or other.willOverrideAnd():
+        if self.will_override_and() or other.will_override_and():
             return OrPropertyValidator(self, other)
         return AndPropertyValidator(self, other)
 
     def __and__(self, other):
-        if self.willOverrideAnd() or other.willOverrideAnd():
+        if self.will_override_and() or other.will_override_and():
             return OrPropertyValidator(self, other)
         return AndPropertyValidator(self, other)
 
