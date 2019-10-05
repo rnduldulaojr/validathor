@@ -26,15 +26,15 @@ def test_integer_type_fail():
 
     assert isinstance(validator.validate( test_data ), list)
 
-    def test_string_type():
-        schema = {
-            "name": value.string
-        }
+def test_string_type():
+    schema = {
+        "name": value.string
+    }
 
-        validator = value.Validator(schema)
+    validator = value.Validator(schema)
 
-        test_data = {
-            "name": "10"
-        }
+    test_data = {
+        "name": "10"
+    }
 
-        assert validator.validate( test_data )
+    assert validator.validate( test_data )
