@@ -5,7 +5,7 @@ class Validator:
 
     def validate(self, obj):
         errors = []
-        for key, validator in self._schema.items(): #
+        for key, validator in self._schema.items():
             try:
                 validator.validate(obj, key)
             except ValueError as err:

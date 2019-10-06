@@ -83,3 +83,16 @@ def test_decimal_type(input_value, expected):
     }
     assert validator.validate(test_data) == expected
 
+@pytest.mark.parametrize(
+    "input_value,expected",
+    [([1,2,3], True), ([], True)]
+)
+def test_array_type(input_value, expected):
+    schema = {
+        "items": value.array
+    }
+    validator = value.Validator(schema)
+    test_data = {
+        "items": input_value
+    }
+    assert validator.validate(test_data) == expected

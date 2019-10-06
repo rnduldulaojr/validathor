@@ -37,4 +37,11 @@ class _DecimalTypeValidator(PropertyValidator):
 decimal = _DecimalTypeValidator()
 
 
+class _ArrayTypeValidator(PropertyValidator):
+    def validate(self, obj, prop):
+        if prop in obj and not isinstance(obj.get(prop), list):
+            raise ValueError(f'{prop} is not an array/list')
+        return True
+
+array = _ArrayTypeValidator()
 
