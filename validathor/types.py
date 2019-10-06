@@ -15,3 +15,12 @@ class _StringTypeValidator(PropertyValidator):
         return True
 
 string = _StringTypeValidator()
+
+class _BooleanTypeValidator(PropertyValidator):
+    def validate(self, obj, prop):
+        if prop in obj and not isinstance(obj.get(prop), bool):
+            raise ValueError(f'{prop} is not boolean')
+        return True
+
+boolean = _BooleanTypeValidator()
+

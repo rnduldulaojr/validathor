@@ -38,3 +38,28 @@ def test_string_type():
     }
 
     assert validator.validate( test_data )
+
+def test_boolean_type():
+    schema = {
+        "flag": value.boolean
+    }
+
+    validator = value.Validator(schema)
+
+    test_data = {
+        "flag": True
+    }
+
+    assert validator.validate(test_data)
+
+def test_boolean_or_nullable_type():
+    schema = {
+        "flag": value.boolean | value.nullable
+    }
+
+    validator = value.Validator(schema)
+    test_data = {
+        "flag": None
+    }
+
+    assert validator.validate(test_data)
