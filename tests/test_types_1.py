@@ -69,4 +69,17 @@ def test_boolean_or_nullable_type():
 
     assert validator.validate(test_data)
 
+@pytest.mark.parametrize(
+    "input_value,expected",
+    [(10.00, True), (10, True), ("10.00", True)]
+)
+def test_decimal_type(input_value, expected):
+    schema = {
+        "price": value.decimal 
+    }
+    validator = value.Validator(schema)
+    test_data = {
+        "price": input_value
+    }
+    assert validator.validate(test_data) == expected
 

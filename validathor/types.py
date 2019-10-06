@@ -26,3 +26,15 @@ class _BooleanTypeValidator(PropertyValidator):
 
 boolean = _BooleanTypeValidator()
 
+class _DecimalTypeValidator(PropertyValidator):
+    def validate(self, obj, prop):
+        try:
+            _ = float(obj.get(prop))
+            return True
+        except ValueError:
+            raise ValueError(f'{prop} is not a decimal')
+
+decimal = _DecimalTypeValidator()
+
+
+
