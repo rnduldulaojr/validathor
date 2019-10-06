@@ -1,4 +1,5 @@
 import validathor as value
+import pytest
 
 def test_integer_type():
     schema = {
@@ -39,7 +40,11 @@ def test_string_type():
 
     assert validator.validate( test_data )
 
-def test_boolean_type():
+@pytest.mark.parametrize(
+    "input_obj,expected", 
+    [(True, True), (False, True), (1, True), (0, True), ("true", True), ("false", True)]
+)
+def test_boolean_type(input_obj, expected):
     schema = {
         "flag": value.boolean
     }
@@ -47,10 +52,10 @@ def test_boolean_type():
     validator = value.Validator(schema)
 
     test_data = {
-        "flag": True
+        "flag": input_obj
     }
 
-    assert validator.validate(test_data)
+    assert validator.validate(test_data) == expected
 
 def test_boolean_or_nullable_type():
     schema = {
@@ -63,3 +68,5 @@ def test_boolean_or_nullable_type():
     }
 
     assert validator.validate(test_data)
+
+
