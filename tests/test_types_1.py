@@ -96,3 +96,21 @@ def test_array_type(input_value, expected):
         "items": input_value
     }
     assert validator.validate(test_data) == expected
+
+
+@pytest.mark.parametrize(
+    "input_value,expected",
+    [({'a':1}, True),
+     ({}, True)]
+)
+def test_map_type(input_value, expected):
+    schema = {
+        "mapping": value.dictionary
+    }
+    validator = value.Validator(schema)
+    test_data = {
+        "mapping": input_value
+    }
+
+    assert validator.validate(test_data) == expected
+    
